@@ -15,17 +15,13 @@ class imagenController extends Controller
 
         $response["status"]=1;
         try{
-            //if(isset($data->file('imagen'))){
-            $imagen = $data->file('imagen');
             $filename = Storage::putFile("archivos", $req->file("imagen"));
             $ejemplo = new ejemplo();
-            //$ejemplo->photo = "desarrolladorapp.com/inkme/public/archivos/".$imagen->getClientOriginalName();
+            $ejemplo->photo = "desarrolladorapp.com/inkme/public/".$filename;
             $ejemplo->photo = Storage::url($filename);
             $ejemplo->save();
             $response["photo"] = $ejemplo;
-            // }else{
-            //     throw new Exception("Error: Introduce imagen");
-            // }
+
         }catch(\Exception $e){
             $response["status"]=0;
             $response["msg"]=$e->getMessage();
