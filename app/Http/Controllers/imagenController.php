@@ -46,4 +46,14 @@ class imagenController extends Controller
         }
         return response()->json($response);
     }
+
+    public function pruebas(Request $req){ //Pide: imagen || Devuelve: "status" "msg" y "[{post}]"
+        // $jdata = $req->getContent();
+        // $data = json_decode($jdata);
+
+        $response["status"]=1;
+        $response["msg"]="EUREKASIO";
+
+        return response()->json($response);
+    }
 }

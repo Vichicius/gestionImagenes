@@ -20,4 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/subirImagen', [imagenController::class,'subirImagen']);
+Route::post('/pruebas', [imagenController::class,'pruebas']);
 Route::put('/descargarImagen', [imagenController::class,'descargarImagen']);
