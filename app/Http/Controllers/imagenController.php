@@ -14,16 +14,16 @@ class imagenController extends Controller
 
         $response["status"]=1;
         try{
-            if(isset($data->imagen)){
-                $imagen = $data->imagen;
-                $data->imagen->file('archivoInput')->storeAs('archivos', $imagen->getClientOriginalName());
-                $ejemplo = new ejemplo();
-                $ejemplo->photo = "desarrolladorapp.com/inkme/public/archivos/".$imagen->getClientOriginalName();
-                $ejemplo->save();
-                $response["photo"] = $ejemplo;
-            }else{
-                throw new Exception("Error: Introduce imagen");
-            }
+            //if(isset($data->file('imagen'))){
+            $imagen = $data->file('imagen');
+            $data->file('archivoInput')->storeAs('archivos', $imagen->getClientOriginalName());
+            $ejemplo = new ejemplo();
+            $ejemplo->photo = "desarrolladorapp.com/inkme/public/archivos/".$imagen->getClientOriginalName();
+            $ejemplo->save();
+            $response["photo"] = $ejemplo;
+            // }else{
+            //     throw new Exception("Error: Introduce imagen");
+            // }
         }catch(\Exception $e){
             $response["status"]=0;
             $response["msg"]=$e->getMessage();
