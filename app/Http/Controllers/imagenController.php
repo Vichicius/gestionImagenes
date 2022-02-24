@@ -17,8 +17,7 @@ class imagenController extends Controller
         try{
             $filename = $req->file("imagen")->store('public/archivos');
             $ejemplo = new ejemplo();
-            //$ejemplo->photo = "desarrolladorapp.com/inkme/public/".$filename;
-            $ejemplo->photo = Storage::url($filename);
+            $ejemplo->photo = "http://www.desarrolladorapp.com/gestionImagenes/storage/app/".$filename;
             $ejemplo->save();
             $response["photo"] = $ejemplo;
 
@@ -36,7 +35,7 @@ class imagenController extends Controller
         $response["status"]=1;
         try{
             if(isset($data->id)){
-                $response['photo'] = ejemplo::find($data->id);
+                $response['photo'] = (ejemplo::find($data->id))->photo;
             }else{
                 throw new Exception("Error: Introduce id y api_token (aunque esté vacio)");
             }
