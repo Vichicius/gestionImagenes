@@ -17,10 +17,10 @@ class imagenController extends Controller
         try{
             //if(isset($data->file('imagen'))){
             $imagen = $data->file('imagen');
-            $data->file('archivoInput')->storeAs('archivos', $imagen->getClientOriginalName());
+            $filename = Storage::putFile("archivos", $req->file("imagen"));
             $ejemplo = new ejemplo();
             //$ejemplo->photo = "desarrolladorapp.com/inkme/public/archivos/".$imagen->getClientOriginalName();
-            $ejemplo->photo = Storage::url('archivos/'.$imagen->getClientOriginalName());
+            $ejemplo->photo = Storage::url($filename);
             $ejemplo->save();
             $response["photo"] = $ejemplo;
             // }else{
