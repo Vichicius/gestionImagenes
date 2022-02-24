@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ejemplo;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class imagenController extends Controller
 {
@@ -18,7 +19,8 @@ class imagenController extends Controller
             $imagen = $data->file('imagen');
             $data->file('archivoInput')->storeAs('archivos', $imagen->getClientOriginalName());
             $ejemplo = new ejemplo();
-            $ejemplo->photo = "desarrolladorapp.com/inkme/public/archivos/".$imagen->getClientOriginalName();
+            //$ejemplo->photo = "desarrolladorapp.com/inkme/public/archivos/".$imagen->getClientOriginalName();
+            $ejemplo->photo = Storage::url('archivos/'.$imagen->getClientOriginalName());
             $ejemplo->save();
             $response["photo"] = $ejemplo;
             // }else{
