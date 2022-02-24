@@ -17,7 +17,7 @@ class imagenController extends Controller
         try{
             $filename = Storage::putFile("archivos", $req->file("imagen"));
             $ejemplo = new ejemplo();
-            $ejemplo->photo = "desarrolladorapp.com/inkme/public/".$filename;
+            //$ejemplo->photo = "desarrolladorapp.com/inkme/public/".$filename;
             $ejemplo->photo = Storage::url($filename);
             $ejemplo->save();
             $response["photo"] = $ejemplo;
