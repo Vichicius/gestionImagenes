@@ -10,12 +10,12 @@ use Illuminate\Support\Facades\Storage;
 class imagenController extends Controller
 {
     public function subirImagen(Request $req){ //Pide: imagen || Devuelve: "status" "msg" y "[{post}]"
-        $jdata = $req->getContent();
-        $data = json_decode($jdata);
+        // $jdata = $req->getContent();
+        // $data = json_decode($jdata);
 
         $response["status"]=1;
         try{
-            $filename = Storage::putFile("archivos", $req->file("imagen"));
+            $filename = $req->file("imagen")->store('public/archivos');
             $ejemplo = new ejemplo();
             //$ejemplo->photo = "desarrolladorapp.com/inkme/public/".$filename;
             $ejemplo->photo = Storage::url($filename);
