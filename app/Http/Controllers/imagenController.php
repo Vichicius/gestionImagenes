@@ -11,7 +11,7 @@ class imagenController extends Controller
 {
     public function subirImagen(Request $req){ //Pide: imagen || Devuelve: "status" "msg" y "[{post}]"
         // $jdata = $req->getContent();
-        // $data = json_decode($jdata);
+        // $data = json_decode($jdata);as
 
         $response["status"]=1;
         try{
